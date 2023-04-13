@@ -1,28 +1,33 @@
 import React, {useEffect, useState} from 'react'
 
 export const AboutUs = (props) => {
-    const [myStyle, setMyStyle] = useState({
-        backgroundColor: 'white',
-        color:'black'
-    })
+    // const [myStyle, setMyStyle] = useState({
+    //     backgroundColor: 'white',
+    //     color:'black'
+    // })
     
     const [btntext, setBtnText] = useState("Enable Dark Mode")
 
-    const toggleStyle =()=>{
-        if(myStyle.color == "white"){
-            setMyStyle({
-                color: "black",
-                backgroundColor: "white"
-            })
-            setBtnText("Enable Light Mode")
-        }
-        else{
-            setMyStyle({
-                color:'white',
-                backgroundColor:'black'
-            })
-            setBtnText("Enable Light Mode")
-        }
+    // const toggleStyle =()=>{
+    //     if(myStyle.color == "white"){
+    //         setMyStyle({
+    //             color: "black",
+    //             backgroundColor: "white"
+    //         })
+    //         setBtnText("Enable Light Mode")
+    //     }
+    //     else{
+    //         setMyStyle({
+    //             color:'white',
+    //             backgroundColor:'black'
+    //         })
+    //         setBtnText("Enable Light Mode")
+    //     }
+    // }
+
+    let myStyle = {
+        color: props.mode === 'dark'?'light':'dark',
+        backgroundColor: props.mode === 'dark'?'dark':'light'
     }
 
     const [bgDark, setBgDark] = useState("light")
@@ -88,7 +93,7 @@ export const AboutUs = (props) => {
             </div> */}
 
 
-            <div className='container py-5 mb-5' style={{backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color:  props.mode === 'dark' ? 'white' : 'black'}}>
+            <div className='container py-5 mb-5' style={myStyle}>
                 <div className='row justify-content-center'>
                     <div className="col-lg-8">
                         <div className="accordion" id="accordionExample" >
@@ -129,7 +134,7 @@ export const AboutUs = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={toggleStyle} className="btn btn-primary my-3" style={myStyle}>{btntext}</button>
+                        {/* <button onClick={toggleStyle} className="btn btn-primary my-3" style={myStyle}>{btntext}</button> */}
                     </div>
                 </div>
             </div>

@@ -51,6 +51,10 @@ export const TextForm = (props) => {
 
     }
 
+    const button = (text,callback) =>{
+        return <button className={`btn text-white mx-3 mb-1 bg-${btnColor}`} onClick={callback}>{text?text:'Normal btton'}</button>
+    }
+
 
 
     const [text, setText] = useState('Enter text here2');
@@ -62,11 +66,17 @@ export const TextForm = (props) => {
                     <label htmlFor="mytext" className="form-label">Example textarea</label>
                     <textarea className="form-control mb-3" style={{backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color:  props.mode === 'dark' ? 'white' : 'black'}} value={text} onChange={handleOnChange} id="mytext" rows="8"></textarea>
                     {/* <button className="btn btn-primary mx-3" onClick={handleUPClick}>Change to uppercase</button> */}
-                    <button className={`btn text-white mx-3 bg-${btnColor}`} onClick={handleUPClick}>Change to uppercase</button>
+                    {/* <button className={`btn text-white mx-3 bg-${btnColor}`} onClick={handleUPClick}>Change to uppercase</button>
                     <button className={`btn text-white mx-3 bg-${btnColor}`}  onClick={handleLOClick}>Change to Lowecase</button>
                     <button className={`btn text-white mx-3 bg-${btnColor}`}  onClick={handleCapClick}>Change to Capitalize</button>
-                    <button className={`btn text-white mx-3 bg-${btnColor}`}  onClick={handleclear}>Clear</button>
+                    <button className={`btn text-white mx-3 bg-${btnColor}`}  onClick={handleclear}>Clear</button> */}
+                    {button('Upper case',handleUPClick) }
+                    {button('Lower Case',handleLOClick)}
+                    {button('Capitalize',handleCapClick)}
+                    {button('Clear',handleclear)}
                 </div>
+              
+            
                 <div className='row'>
                     <h1>Your Text Summary</h1>
                     <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} character</p>
