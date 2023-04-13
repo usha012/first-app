@@ -7,6 +7,7 @@ export const AboutUs = (props) => {
     // })
     
     const [btntext, setBtnText] = useState("Enable Dark Mode")
+    const [myStyle,setMyStyle] = useState({})
 
     // const toggleStyle =()=>{
     //     if(myStyle.color == "white"){
@@ -25,10 +26,17 @@ export const AboutUs = (props) => {
     //     }
     // }
 
-    let myStyle = {
-        color: props.mode === 'dark'?'light':'dark',
-        backgroundColor: props.mode === 'dark'?'dark':'light'
-    }
+    // let myStyle = {
+    //     color:props.mode === 'dark'?'light':'dark',
+    //     backgroundColor: props.mode === 'dark'?'dark':'light'
+    // }
+
+    useEffect(()=>{
+        console.log(props,'props')
+        setMyStyle({color:`${props.mode === 'dark'?'light':'dark'}`,
+            backgroundColor: `${props.mode === 'dark'?'light':'dark'}`
+        })
+    },[props.mode])
 
     const [bgDark, setBgDark] = useState("light")
 
@@ -99,7 +107,10 @@ export const AboutUs = (props) => {
                         <div className="accordion" id="accordionExample" >
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="headingOne">
-                                    <button className={`accordion-button bg-${bgDark}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    {/* <button className={`accordion-button bg-${bgDark}`}  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Accordion Item #1
+                                    </button> */}
+                                    <button className={`accordion-button`} style={myStyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         Accordion Item #1
                                     </button>
                                 </h2>
