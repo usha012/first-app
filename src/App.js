@@ -6,23 +6,34 @@ import { AboutUs } from './Components/AboutUs';
 import React, { useState } from 'react'; 
 import { Aleart } from './Components/Aleart';
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 function App() {
 
   const[mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null)
   const showAlert = (message, type) =>{
+    setAlert({
+      msg:message,
+      type:type
+    })
+    setTimeout( ()=>{
+      setAlert(null)
 
-
+    }, 3000);
   }
 
   const toggleMode = ()=>{
     if (mode === 'light'){
       setMode('dark');
       document.body.style.backgroundColor = 'grey';
+      showAlert("Dark Mode has been enabled", "success")
     }
     else{
       setMode('light');
       document.body.style.backgroundColor = 'white';
+      showAlert("Light Mode has been enabled", "success")
     }
   }
 
@@ -30,14 +41,20 @@ function App() {
   return (
     <>
     
-    <Navbar title="navbar" hometext="Home2" mode={mode} toggleMode={toggleMode}/>
-    <Aleart alert="this is alert"></Aleart>
-    <div className='container'>
-      <TextForm formheading="Enter Your Text Here" mode={mode}/>
-
-    </div>
+    <Aleart alert={alert}></Aleart>
+    {/* <div className='container'>
+      <TextForm showAlert={showAlert} formheading="Enter Your Text Here" mode={mode}/>
+    </div> */}
    
-        <AboutUs mode={mode}/>
+    {/* <AboutUs mode={mode}/> */}
+
+    <BrowserRouter>
+    <Navbar title="navbar" hometext="Home" mode={mode} toggleMode={toggleMode}/>
+        <Routes>
+          <Route path="/" element={ <TextForm showAlert={showAlert} formheading="Enter Your Text Here" mode={mode}/>} />
+          <Route path="/aboutus" element={<AboutUs mode={mode}/>} />
+        </Routes>
+    </BrowserRouter>
         
     </>
   );
