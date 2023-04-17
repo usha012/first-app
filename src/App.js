@@ -10,6 +10,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 function App() {
+  const [bcolorchange, setBColorChange] = useState('#000')
+  const [colorchange, setColorChange] = useState('#fff')
 
   const[mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null)
@@ -41,7 +43,7 @@ function App() {
   return (
     <>
     
-    <Aleart alert={alert}></Aleart>
+    
     {/* <div className='container'>
       <TextForm showAlert={showAlert} formheading="Enter Your Text Here" mode={mode}/>
     </div> */}
@@ -49,11 +51,13 @@ function App() {
     {/* <AboutUs mode={mode}/> */}
 
     <BrowserRouter>
-    <Navbar title="navbar" hometext="Home" mode={mode} toggleMode={toggleMode}/>
+    <Navbar title="navbar" hometext="Home" mode={mode} toggleMode={toggleMode} bgcolor={bcolorchange} colorchange={colorchange} setBColorChange={setBColorChange} setColorChange={setColorChange}/>
+    <Aleart alert={alert}></Aleart>    
         <Routes>
-          <Route path="/" element={ <TextForm showAlert={showAlert} formheading="Enter Your Text Here" mode={mode}/>} />
-          <Route path="/aboutus" element={<AboutUs mode={mode}/>} />
+          <Route path="/" element={ <TextForm showAlert={showAlert} formheading="Enter Your Text Here" mode={mode} bgcolor={bcolorchange} colorchange={colorchange} setBColorChange={setBColorChange} setColorChange={setColorChange}/>} />
+          <Route path="/aboutus" element={<AboutUs mode={mode} bgcolor={bcolorchange} colorchange={colorchange} setBColorChange={setBColorChange} setColorChange={setColorChange}/>} />
         </Routes>
+        
     </BrowserRouter>
         
     </>

@@ -51,20 +51,20 @@ export const TextForm = (props) => {
 
     }
 
-    const button = (text,callback) =>{
-        return <button className={`btn text-white mx-3 mb-1 bg-${btnColor}`} onClick={callback}>{text?text:'Normal btton'}</button>
+    const button = (btntext,callback) =>{
+        return <button className={`btn  mx-3 mb-1`} style={{backgroundColor: props.bgcolor,color:props.colorchange}} disabled={text.length===0} onClick={callback}>{text?btntext:'disabled btton'}</button>
     }
 
 
 
-    const [text, setText] = useState('Enter text here2');
+    const [text, setText] = useState('');
     return (
         <>
             <div className='container'>
-                <h2 className={`text-${props.mode === 'light' ? 'dark': 'light'}`}>{props.formheading} - {text}</h2>
+                <h2 className={`text-${props.mode === 'light' ? 'dark': 'light'}`} style={{backgroundColor: props.bgcolor,color:props.colorchange}}>{props.formheading}</h2>
                 <div className="mb-3"  >
                     <label htmlFor="mytext" className="form-label">Example textarea</label>
-                    <textarea className="form-control mb-3" style={{backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color:  props.mode === 'dark' ? 'white' : 'black'}} value={text} onChange={handleOnChange} id="mytext" rows="8"></textarea>
+                    <textarea className="form-control mb-3" style={{backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color:  props.mode === 'dark' ? 'white' : 'black'}} placeholder="Enter text here" value={text} onChange={handleOnChange} id="mytext" rows="8"></textarea>
                     {/* <button className="btn btn-primary mx-3" onClick={handleUPClick}>Change to uppercase</button> */}
                     {/* <button className={`btn text-white mx-3 bg-${btnColor}`} onClick={handleUPClick}>Change to uppercase</button>
                     <button className={`btn text-white mx-3 bg-${btnColor}`}  onClick={handleLOClick}>Change to Lowecase</button>
@@ -80,7 +80,7 @@ export const TextForm = (props) => {
                 <div className='row'>
                     <h1>Your Text Summary</h1>
                     <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} character</p>
-                    <p>{0.008 * text.split(" ").length} read time</p>
+                    <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} read time</p>
                     <h3>Preview</h3>
                     <p>{text}</p>
                 </div>
